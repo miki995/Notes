@@ -6,6 +6,7 @@ const app = express();
 
 const port = 3000;
 
+require('./app/routes') (app, {});
 app.listen(port, () => {
     console.log('We arre live at ' + port);
 });
