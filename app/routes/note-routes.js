@@ -30,6 +30,21 @@ module.exports = function (app, db) {
         });
     });
 
+    app.put('/notes/:id', (req, res) => {
+
+        const id = req.params.id;
+        const details = {'_id': new ObjectID(id)};
+        const note = { text: req.body.body, title: req.body.title};
+        db.collection('g_notes').update(details, note,  (err, item) => {
+
+            if (err) {
+                res.send({'error': 'An error has occurred!'});
+            } else {
+                res.send(note);
+            }
+        });
+    });
+
     app.post('/notes', (req, res) => {
         const note = {text: req.body.body, title: req.body.title};
 
